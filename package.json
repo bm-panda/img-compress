@@ -1,0 +1,9 @@
+{
+  "name": "image-compressor",
+  "version": "1.1.1",
+  "description": "图片批量压缩 - 支持 JPEG、PNG、WebP、AVIF 互转的高效压缩工具",
+  "main": "main.js",
+  "dependencies": {
+    "sharp": "^0.35.3"
+  }
+}

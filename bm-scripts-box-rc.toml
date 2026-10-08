@@ -1,0 +1,70 @@
+[bmscriptsbox]
+
+[bmscriptsbox.info]
+id = "a7b9c3d1-e2f4-5a6b-8c7d-9e0f1a2b3c4d"
+name = "图片压缩"
+desc = "图片批量压缩 | 支持 JPEG/PNG/WebP/AVIF 互转、MozJPEG 深度优化、批量压缩、质量与最大边长可调 | 一键缩小图片体积、画质更佳，支持右键/快捷键触发，可作节点被调用"
+version = "1.1.1"
+icon = "imgs/logo.png"
+
+[bmscriptsbox.runtime]
+language = "node.js"
+language_version = ">=20.0"
+entry = "main.js"
+terminal = "always"
+
+[bmscriptsbox.triggers.context_menu]
+enabled = true
+targets = ["files"]
+filters = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp", ".avif", ".tiff"]
+
+[bmscriptsbox.triggers.shortcut]
+enabled = true
+filters = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp", ".avif", ".tiff"]
+
+[[bmscriptsbox.inputs]]
+name = "target_paths"
+label = "图片"
+type = "list"
+pick = "files"
+exts = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp", ".avif", ".tiff"]
+description = "要压缩的图片文件，可多选"
+
+[[bmscriptsbox.outputs]]
+name = "output_paths"
+type = "list"
+description = "压缩成功后的图片绝对路径列表"
+
+[[bmscriptsbox.outputs]]
+name = "failed"
+type = "list"
+description = "处理失败的文件及原因，元素形如 {file, error}"
+
+[[bmscriptsbox.params]]
+name = "quality"
+label = "压缩质量"
+type = "int"
+default = 80
+description = "压缩质量，取值 1-100，数值越高画质越好、体积越大"
+
+[[bmscriptsbox.params]]
+name = "format"
+label = "输出格式"
+type = "str"
+default = "jpeg"
+choices = ["jpeg", "png", "webp", "avif"]
+choice_labels = { jpeg = "JPEG", png = "PNG", webp = "WebP", avif = "AVIF" }
+description = "输出格式，与源图格式不同即为格式转换"
+
+[[bmscriptsbox.params]]
+name = "max_size"
+label = "最大边长"
+type = "int"
+default = 0
+description = "限制图片最大边长（像素），0 表示保持原尺寸"
+
+[bmscriptsbox.node]
+enabled = true
+
+[bmscriptsbox.params_form]
+enabled = true
